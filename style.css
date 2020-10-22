@@ -1,0 +1,86 @@
+/* write your code here */
+body{
+  background-image: url(./img/polamie.jpg);
+  cursor: default;
+  font-family: 'Slabo 27px', serif;
+}
+
+.terpisah{
+    background-color: yellow;
+}
+
+header{
+  background-color: black;
+  position: sticky;
+  margin: -10px;
+  top: 0px;
+  padding: 10px;
+}
+
+nav{
+  float: right;
+}
+
+ul{
+  list-style: none;
+  font-weight: bold;
+}
+
+ul li{
+  display: inline-block;
+  margin: 0px;
+  padding-right: 30px;
+}
+
+a{
+  text-decoration: none;
+}
+
+#article-list{
+  width: 75%;
+  margin: auto;
+  background-color: white;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.contoh1 {
+    line-height: 40px;
+}
+
+.contoh2 {
+    text-align: center;
+}
+
+h1{
+  text-align: center;
+  line-height: 100px;
+  font-weight: 500;
+  font-size: 100px;
+  color: #333333;
+}
+
+article{
+  font-size: 0.5cm;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+section article:last-child{
+  border-bottom: none;
+}
+
+footer{
+  position: relative;
+  background: black;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+footer h5{
+  color: #ffffff;
+  margin: auto;
+} 
+
