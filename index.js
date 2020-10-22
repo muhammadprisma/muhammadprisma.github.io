@@ -9,7 +9,8 @@ const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
-// create our questions
+
+// Susun Soal
 let questions = [
     {
         question : "Siapakah salah satu nama Maskot Souju Empire ini?",
@@ -34,7 +35,8 @@ let questions = [
         correct : "C"
     }
 ];
-// create some variables
+
+// Deklarasikan variabel
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
@@ -43,7 +45,8 @@ const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
-// render a question
+
+// memproses Pertanyaan
 function renderQuestion(){
     let q = questions[runningQuestion];
     
@@ -54,7 +57,8 @@ function renderQuestion(){
     choiceC.innerHTML = q.choiceC;
 }
 start.addEventListener("click",startQuiz);
-// start quiz
+
+//Menampilkan Quiz
 function startQuiz(){
     start.style.display = "none";
     renderQuestion();
@@ -63,13 +67,13 @@ function startQuiz(){
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
-// render progress
+//Proses menjalankan Quiz
 function renderProgress(){
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
 }
-// counter render
+//Hitung Waktu proses
 function renderCounter(){
     if(count <= questionTime){
         counter.innerHTML = count;
@@ -77,28 +81,28 @@ function renderCounter(){
         count++
     }else{
         count = 0;
-        // change progress color to red
+        // pengaturan warna merah ketika proses
         answerIsWrong();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
         }else{
-            // end the quiz and show the score
+            // akhir quiz
             clearInterval(TIMER);
             scoreRender();
         }
     }
 }
-// checkAnwer
+// pengecekan jawaban
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
-        // answer is correct
+        // untuk jawaban benar
         score++;
-        // change progress color to green
+        // ubah ke hijau atas jawaban benar
         answerIsCorrect();
     }else{
-        // answer is wrong
-        // change progress color to red
+        // jawaban salah
+        // ubah ke merah atas jawaban salah
         answerIsWrong();
     }
     count = 0;
@@ -106,31 +110,29 @@ function checkAnswer(answer){
         runningQuestion++;
         renderQuestion();
     }else{
-        // end the quiz and show the score
+        // akhir quiz dan tampilkan skor
         clearInterval(TIMER);
         scoreRender();
     }
 }
-// answer is correct
+// untuk jawaban benar
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
 }
-// answer is Wrong
+// untuk jawaban salah
 function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
-// score render
+// hasil proses
 function scoreRender(){
     scoreDiv.style.display = "block";
     
-    // calculate the amount of question percent answered by the user
+    // menghitung jumlah skor
     const scorePerCent = Math.round(100 * score/questions.length);
     
-    // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "img/menang.png":
-              (scorePerCent >= 60) ? "img/kalah.png" :
-              (scorePerCent >= 40) ? "img/kalah.png" :
-              (scorePerCent >= 20) ? "img/kalah.png" :
+    // tampilkan gambar sebagai representasi hasil
+    let img = (scorePerCent >= 99) ? "img/menang.png":
+              (scorePerCent >= 0) ? "img/kalah.png" :
               "img/kalah.png";
     
     scoreDiv.innerHTML = "<img src="+ img +">";
